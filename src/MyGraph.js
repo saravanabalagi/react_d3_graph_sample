@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Graph } from "react-d3-graph";
 
 // graph payload (with minimalist structure)
@@ -31,14 +32,29 @@ const onClickLink = function (source, target) {
 };
 
 const MyGraph = () => {
+  const [config, setConfig] = useState(null);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const { current } = ref;
+    if (!current) return;
+    const { clientWidth, clientHeight } = current;
+    const configNew = { ...myConfig, width: clientWidth, height: clientHeight };
+    setConfig(configNew);
+  }, [ref]);
+
   return (
-      <Graph
-        id="graph-id" // id is mandatory
-        data={data}
-        config={myConfig}
-        onClickNode={onClickNode}
-        onClickLink={onClickLink}
-      />
+    <div ref={ref} style={{height: '100%'}}>
+      {config && (
+        <Graph
+          id="graph-id" // id is mandatory
+          data={data}
+          config={config}
+          onClickNode={onClickNode}
+          onClickLink={onClickLink}
+        />
+      )}
+    </div>
   );
 };
 
