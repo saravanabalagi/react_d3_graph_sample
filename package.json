@@ -1,7 +1,7 @@
 {
-  "name": "d3_js_sample",
+  "name": "react_d3_graph_sample",
   "version": "0.1.0",
-  "private": true,
+  "homepage": "https://github.com/saravanabalagi/react_d3_graph_sample#readme",
   "dependencies": {
     "d3": "^5.5.0",
     "react": "^16.4.1",
@@ -14,7 +14,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "yarn run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -33,5 +35,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }
